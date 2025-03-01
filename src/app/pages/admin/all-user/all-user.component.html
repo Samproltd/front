@@ -1,0 +1,29 @@
+<div class="container user-table-container">
+  <table class="table user-table">
+    <thead>
+      <tr>
+        <th>Sr.No</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Mobile No</th>
+        <th>More Info</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of AllUser; index as i">
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.firstName }} {{ item.lastName }}</td>
+        <td>{{ item.username }}</td>
+        <td>{{ item.phone }}</td>
+        <td>
+          <a class="info-link" [routerLink]="['/admin/moreinfo', item.id]">More Info</a>
+        </td>
+
+        <td>
+          <button class="delete-btn" (click)="deleteUser(item.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

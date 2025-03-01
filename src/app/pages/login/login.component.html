@@ -1,0 +1,56 @@
+<div class="bootstrap-wrapper">
+  <nav class="navbar navbar-expand-lg" style="background-color: rgb(35, 189, 240);">
+    <div class="container-fluid">
+      <a class="navbar-brand mx-auto" href="#"></a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <mat-card>
+          <div class="container text-center">
+            <!-- <img src="../../../assets/logo.png" height="150px" width="150px" /> -->
+          </div>
+
+          <h1 class="text-center">Login</h1>
+
+          <!-- {{ loginData | json }} -->
+          <form (ngSubmit)="formSubmit()">
+            <!-- username field -->
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>User Name</mat-label>
+              <input
+                [(ngModel)]="loginData.username"
+                name="username"
+                required
+                matInput
+                placeholder="Enter here"
+              />
+
+            </mat-form-field>
+
+            <!-- password field -->
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input
+                [(ngModel)]="loginData.password"
+                name="password"
+                type="password"
+                required
+                matInput
+                placeholder="Enter here"
+              />
+            </mat-form-field>
+
+            <div class="container text-center" style="margin-right: 50px;">
+              <button mat-raised-button color="primary" type="submit">
+                Login
+              </button>
+            </div>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

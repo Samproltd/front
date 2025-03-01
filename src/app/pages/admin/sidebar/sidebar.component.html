@@ -1,0 +1,27 @@
+<mat-card class="sidebar-card">
+  <mat-action-list class="action-list">
+    <div mat-subheader></div>
+    <!-- <img src="../../../assets/logo.png" style="height: 80px; width: 80px;"   class="toolbar-logo" /> -->
+    <button routerLink="/admin" mat-list-item class="sidebar-button dashboard">
+      <mat-icon mat-list-icon>home</mat-icon> Dashboard
+    </button>
+    <button mat-list-item *ngIf="!isLoggedIn" [routerLink]="'/signup'" class="sidebar-button add-students">
+      <mat-icon mat-list-icon>add</mat-icon><span>Add Student</span>
+    </button>
+    <button mat-list-item routerLink="/admin/allUser" class="sidebar-button all-students">
+      <mat-icon mat-list-icon>account_circle</mat-icon> All Students
+    </button>
+    <button mat-list-item routerLink="/admin/categories" class="sidebar-button all-subjects">
+      <mat-icon mat-list-icon>list</mat-icon> All Subjects
+    </button>
+    <button mat-list-item routerLink="/admin/add-category" class="sidebar-button add-courses">
+      <mat-icon mat-list-icon>add_circle_outline</mat-icon> Add Courses
+    </button>
+    <button mat-list-item routerLink="/admin/quizzes" class="sidebar-button all-exams">
+      <mat-icon mat-list-icon>Exams</mat-icon> All Exams
+    </button>
+    <button mat-list-item routerLink="/admin/add-quiz" class="sidebar-button add-exam">
+      <mat-icon mat-list-icon>add</mat-icon> Add Exam
+    </button>
+  </mat-action-list>
+</mat-card>

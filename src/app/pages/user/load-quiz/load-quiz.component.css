@@ -1,0 +1,29 @@
+.truncate {
+  display: block;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.example-header-image {
+  background-image: url("/assets/exam1.png");
+  background-size: cover;
+}
+/* Initial Style for Start button */
+.start-button {
+  background-color: #007bff; /* Blue color */
+  color: white; /* Text color */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for background color and scaling */
+}
+
+/* Hover effect for Start button */
+.start-button:hover {
+  background-color: #5bc0de; /* Light blue color */
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+/* Optional: Additional styling for buttons */
+.mat-card-action button {
+  margin-right: 10px; /* Add margin between buttons */
+}
+

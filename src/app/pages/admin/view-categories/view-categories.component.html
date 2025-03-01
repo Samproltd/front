@@ -1,0 +1,17 @@
+<mat-card style="margin-left: 100px;"> <!-- Add left margin to avoid overlap with the sidebar -->
+  <h1>All Courses</h1>
+  <mat-list>
+    <mat-list-item *ngFor="let c of categories">
+      <mat-icon mat-list-icon>radio_button_checked</mat-icon> <!-- Dot icon -->
+      <div mat-line>{{ c.title }}</div>
+      <div mat-line>{{ c.description }}</div>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+
+  <div class="container text-center mt20">
+    <button routerLink="/admin/add-category" mat-raised-button color="primary">
+      Add New Course
+    </button>
+  </div>
+</mat-card>

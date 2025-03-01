@@ -1,0 +1,60 @@
+.example-header-image {
+  background-image: url("../../../../assets/exam.png");
+  background-size: cover;
+}
+
+
+/* Reduce the size of the mat-card */
+.quiz-card {
+  width: 80%; /* Reduce width of the card */
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px; /* Add some bottom margin */
+  padding: 10px; /* Reduce padding */
+}
+
+/* Reduce the size of the button container */
+.reduced-container {
+  width: 50%; /* Adjust the width to make it smaller */
+  margin-right:20px; /* Center align the button */
+  align-items: center;
+  padding-left: 50px;
+}
+
+/* Optional: Adjust the text size for compact look */
+.mat-card-title,
+.mat-card-subtitle {
+  font-size: 1.1rem; /* Reduce font size slightly */
+}
+
+button {
+  font-size: 0.9rem; /* Slightly smaller font size for buttons */
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.ml20 {
+  margin-left: 20px;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.mr20 {
+  margin-right: 20px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}

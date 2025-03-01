@@ -1,0 +1,88 @@
+/* User Table Styling */
+.user-table-container {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-table th, .user-table td {
+  padding: 15px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.user-table th {
+  background-color: #1f00ce;
+  color: white;
+  text-align: center;
+}
+
+.info-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.info-btn:hover {
+  background-color: #218838;
+}
+
+.delete-btn {
+  background-color: #1f00ce;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.delete-btn:hover {
+  background-color: #1f00ce;
+}
+
+/* User Details Page */
+.user-details-container {
+  width: 60%;
+  margin: auto;
+  padding: 20px;
+  text-align: left;
+}
+
+.user-card {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.status-pass {
+  color: green;
+  font-weight: bold;
+}
+
+.status-fail {
+  color: red;
+  font-weight: bold;
+}
+
+.back-btn {
+  background-color: #020e80;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.back-btn:hover {
+  background-color: #0056b3;
+}

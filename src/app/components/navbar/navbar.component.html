@@ -1,0 +1,26 @@
+<mat-toolbar class="light-blue-toolbar">
+  <!-- Logo on the left -->
+  <a routerLink="/" mat-icon-button class="logo-icon">
+    <img src="../../../assets/logo.png" class="toolbar-logo" />
+  </a>
+
+  <!-- Centered Title -->
+  <span class="toolbar-title" style="margin-left: 205px;">Online Exam Portal</span>
+
+  <span class="example-spacer"></span>
+
+  <!-- Login button (if not logged in) -->
+  <a *ngIf="!isLoggedIn" [routerLink]="'/login'" mat-icon-button class="example-icon favorite-icon" style="margin-right: 50px; font-size: medium;">
+    Login
+  </a>
+
+  <!-- Logout button (if logged in) -->
+  <a (click)="logout()" *ngIf="isLoggedIn" mat-icon-button class="example-icon favorite-icon">
+    Logout
+  </a>
+
+  <!-- Profile button (if logged in) -->
+  <button *ngIf="isLoggedIn && user" class="example-icon favorite-icon ml20" mat-button routerLink="/admin/profile">
+    {{ user.firstName | titlecase }} {{ user.lastName | titlecase }}
+  </button>
+</mat-toolbar>

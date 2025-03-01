@@ -1,0 +1,21 @@
+<div class="container moreinfo-container">
+  <h2>Student Details</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Exam Name</th>
+        <th>Obtained Marks</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let exam of studentDetails.exams">
+        <td>{{ exam.name }}</td>
+        <td>{{ exam.obtainedMarks }}</td>
+        <td [ngClass]="{'pass': exam.status === 'Pass', 'fail': exam.status === 'Fail'}">
+          {{ exam.status }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
