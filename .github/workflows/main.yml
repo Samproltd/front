@@ -1,48 +1,38 @@
-name: Build and Deploy Angular Project
+name: CI
 
 on:
   push:
     branches:
-      - main  # Trigger the action on pushing to the main branch
+      - main
   pull_request:
     branches:
-      - main  # Trigger on PRs targeting the main branch
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # The environment where the job will run
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2  # Checkout your repository code
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'  # Set the Node.js version you want to use
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14' # Use Node.js 14
 
-    - name: Install dependencies
-      run: |
-        npm install  # Install dependencies using npm
+      - name: Install dependencies
+        run: |
+          npm install --legacy-peer-deps
+          
+      - name: Build the application
+        run: |
+          npm run build --prod # Run build without NODE_OPTIONS
 
-    - name: Build Angular Project
-      run: |
-        npm run build --prod  # Build the Angular project for production
+      - name: Run tests
+        run: |
+          npm test # Replace with your actual test command
 
-    - name: Build Docker Image
-      run: |
-        docker build -t your-dockerhub-username/examfront .  # Build the Docker image
-
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}  # Docker username stored in GitHub Secrets
-        password: ${{ secrets.DOCKER_PASSWORD }}  # Docker password stored in GitHub Secrets
-
-    - name: Push Docker Image to Docker Hub
-      run: |
-        docker push your-dockerhub-username/examfront  # Push the Docker image to Docker Hub
-
-    - name: Deploy to Azure (Optional)
-      run: |
-        # Add your Azure deployment 
+      - name: Docker build
+        run: |
+          docker build -t your-image-name . # Adjust the context and image name as needed
