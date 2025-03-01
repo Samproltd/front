@@ -1,14 +1,15 @@
 {
   "name": "examfront",
   "version": "1.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "NODE_OPTIONS=--openssl-legacy-provider ng serve",
-    "build": "NODE_OPTIONS=--openssl-legacy-provider ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
-  },
+ "scripts": {
+  "ng": "ng",
+  "start": "ng serve",  // Remove NODE_OPTIONS
+  "build": "ng build",  // Remove NODE_OPTIONS
+  "test": "ng test",
+  "lint": "ng lint",
+  "e2e": "ng e2e"
+}
+
   "private": true,
   "dependencies": {
     "@angular/animations": "~11.2.11",
