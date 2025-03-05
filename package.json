@@ -3,7 +3,7 @@
   "version": "1.0.0",
  "scripts": {
   "ng": "ng",
-  "start": "ng serve",  // Remove NODE_OPTIONS
+  "start": "ng serve"  // Remove NODE_OPTIONS
   "build": "ng build",  // Remove NODE_OPTIONS
   "test": "ng test",
   "lint": "ng lint",
