@@ -1,16 +1,14 @@
 {
   "name": "examfront",
   "version": "1.0.0",
- "scripts": {
-  "ng": "ng",
-  "start": "ng serve"  // Remove NODE_OPTIONS
-  "build": "ng build",  // Remove NODE_OPTIONS
-  "test": "ng test",
-  "lint": "ng lint",
-  "e2e": "ng e2e"
-}
-
-  "private": true,
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  },
   "dependencies": {
     "@angular/animations": "~11.2.11",
     "@angular/cdk": "^11.2.10",
