@@ -13,13 +13,11 @@ module.exports = function (config) {
       require("@angular-devkit/build-angular/plugins/karma"),
     ],
     client: {
-      jasmine: {
-        // Configuration options for Jasmine
-      },
-      clearContext: false, // Leave Jasmine Spec Runner output visible in browser
+      jasmine: {},
+      clearContext: false, // leave Jasmine Spec Runner output visible in browser
     },
     jasmineHtmlReporter: {
-      suppressAll: true, // Removes the duplicated traces
+      suppressAll: true, // removes the duplicated traces
     },
     coverageReporter: {
       dir: require("path").join(__dirname, "./coverage/examfront"),
@@ -32,7 +30,7 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
 
-    // Use Chrome by default, but use Headless mode in CI
+    // Use Chrome normally for local development, headless in CI
     browsers: process.env.CI ? ["ChromeHeadlessCI"] : ["Chrome"],
 
     customLaunchers: {
@@ -42,7 +40,8 @@ module.exports = function (config) {
       },
     },
 
-    singleRun: process.env.CI ? true : false, // Run once in CI, keep watching locally
+    // Single run in CI; auto-watch locally
+    singleRun: process.env.CI ? true : false,
     restartOnFileChange: true,
   });
 };

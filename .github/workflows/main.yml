@@ -32,7 +32,12 @@ jobs:
       - name: Install Chromium dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libnss3 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxrandr2 libgbm1 libasound2
+          UBUNTU_VERSION=$(lsb_release -rs)
+          if [[ "$UBUNTU_VERSION" == "24.04" ]]; then
+            sudo apt-get install -y libnss3 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxrandr2 libgbm1
+          else
+            sudo apt-get install -y libnss3 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxrandr2 libgbm1 libasound2
+          fi
 
       - name: Run tests
         run: |
@@ -40,4 +45,4 @@ jobs:
           npm test
 
       - name: Docker build
-        run: docker build -t sampro/front-end-app -f Dockerfile .
+        run: docker build -t myusername/myapp -f Dockerfile .
