@@ -15,25 +15,22 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: "14" # Use Node.js 14
+          node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies
-        run: |
-          npm install --legacy-peer-deps
+        run: npm install --legacy-peer-deps
 
       - name: Build the application
-        run: |
-          npm run build --prod # Run build without NODE_OPTIONS
+        run: npm run build
 
       - name: Run tests
-        run: |
-          npm test # Replace with your actual test command
+        run: npm test
 
       - name: Docker build
-        run: |
-          docker build -t your-image-name . # Adjust the context and image name as needed
+        run: docker build -t sampro/front-end-app -f Dockerfile .
