@@ -1,63 +1,58 @@
-name: Build and deploy Angular app to Azure Web App
+name: CI - Build and Deploy Angular to Azure Web App
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
+      - workflow-setup
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read # Required for actions/checkout
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js version
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20.x'
-
-      - name: Set OpenSSL Legacy Provider (Fix OpenSSL 3 issues)
-        run: echo "NODE_OPTIONS=--openssl-legacy-provider" >> $GITHUB_ENV
+          node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
-      - name: Build Angular app
-        run: npm run build -- --configuration=production
+      - name: Build the application
+        run: NODE_OPTIONS=--openssl-legacy-provider npm run build -- --configuration=production
 
-      - name: Zip artifact for deployment
-        run: zip -r release.zip ./dist/examfront
+      - name: Install Chromium dependencies
+        run: |
+          sudo apt-get update
+          UBUNTU_VERSION=$(lsb_release -rs)
+          if [[ "$UBUNTU_VERSION" == "24.04" ]]; then
+            sudo apt-get install -y libnss3 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxrandr2 libgbm1
+          else
+            sudo apt-get install -y libnss3 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxrandr2 libgbm1 libasound2
+          fi
 
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v4
-        with:
-          name: angular-app
-          path: release.zip
+      - name: Docker login
+        run: echo "${{ secrets.ANGULAR_AZURE }}" | docker login -u "${{ secrets.ANGULAR_AZURE }}" --password-stdin
+
+      - name: Docker build & push
+        run: |
+          docker build -t myusername/angular-app -f Dockerfile .
+          docker tag myusername/angular-app myusername/angular-app:latest
+          docker push myusername/angular-app:latest
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    permissions:
-      id-token: write
-      contents: read
 
     steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v4
-        with:
-          name: angular-app
-
-      - name: Unzip artifact for deployment
-        run: unzip release.zip
-
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -66,9 +61,7 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Deploy to Azure Web App
-        id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'angular'
-          slot-name: 'Production'
-          package: release.zip  # Fixed: Deploy the zip file
+          app-name: 'angular'  # Change to your Azure Web App name
+          images: 'myusername/angular-app:latest'
