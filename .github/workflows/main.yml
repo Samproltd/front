@@ -22,13 +22,17 @@ jobs:
         with:
           node-version: "16"
           cache: "npm"
+          
+      - name: Verify Node.js version
+        run: node --version
 
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
       - name: Build the application
+        env:
+          NODE_OPTIONS: "--openssl-legacy-provider"
         run: npm run build --configuration=production
-
 
       - name: Install Chromium dependencies
         run: |
@@ -42,6 +46,13 @@ jobs:
 
       - name: Docker build
         run: docker build -t myusername/myapp -f Dockerfile .
+        
+      # Upload build artifacts to share between jobs
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist/  # Adjust this path if your Angular build output is in a different directory
 
   deploy:
     runs-on: ubuntu-latest
@@ -49,6 +60,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        
+      # Download the build artifacts from the previous job
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
 
       - name: Install Azure CLI
         run: |
