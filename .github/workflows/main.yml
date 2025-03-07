@@ -60,4 +60,4 @@ jobs:
 
       - name: 'Deploy to Azure App Service'
         run: |
-          az webapp deploy --resource-group Samproexam2025 --name angular --src-path ./examfront --type static
+          az webapp deploy --resource-group Samproexam2025 --name angular --src-path ./ --type static
