@@ -48,13 +48,12 @@ jobs:
       - name: Docker build
         run: docker build -t myusername/myapp -f Dockerfile .
         
-      # Upload build artifacts to share between jobs
+    
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: dist
-          path: dist/  # Adjust this path if your Angular build output is in a different directory
-
+          name:build-output
+          path: ./dist
   deploy:
     runs-on: ubuntu-latest
     needs: build
