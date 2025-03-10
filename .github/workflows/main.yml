@@ -81,4 +81,4 @@ jobs:
         run: |
           az webapp deploy --resource-group Samproexam2025 --name angular --src-path ./dist --type static
 
-        # trying with node version 16 and npm 8 change in vm
+        # trying with node version 16 and npm 8 change in vm ssl 
